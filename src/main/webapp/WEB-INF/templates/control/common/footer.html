@@ -1,0 +1,38 @@
+
+<!-- 右侧在线客服 -->
+<style>
+    /* side */
+    .side{position:fixed;width:54px;height:275px;right:0;top:214px;z-index:100;display:none;}
+    .side ul li{width:54px;height:54px;float:left;position:relative;border-bottom:1px solid #444;}
+    .side ul li .sidebox{position:absolute;width:54px;height:54px;top:0;right:0;transition:all 0.1s;background:#000;color:#fff;font:14px/54px "微软雅黑";overflow:hidden;}
+    .side ul li .sidetop{width:54px;height:54px;line-height:54px;display:inline-block;background:#000;transition:all 0.1s;}
+    .side ul li .sidetop:hover{background:#218ff2;}
+    .side ul li img{float:left;}
+</style>
+<div class="side">
+    <ul>
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=897249302&site=qq&menu=yes" ><div class="sidebox"><img src="http://demo.lanrenzhijia.com/2014/service1108/side_icon04.png">客服江江</div></a></li>
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=1025853821&site=qq&menu=yes" ><div class="sidebox"><img src="http://demo.lanrenzhijia.com/2014/service1108/side_icon04.png">客服多多</div></a></li>
+        <li style="border:none;"><a href="javascript:goTop();" class="sidetop"><img src="http://demo.lanrenzhijia.com/2014/service1108/side_icon05.png"></a></li>
+    </ul>
+</div>
+
+<div id="footer">
+    <div class="footer-container">
+        <a href="#">联系我们</a> | <a href="#">诚聘英才</a> | <a href="#">帮助中心</a> | <a href="#">版权所有&copy; 2016 沪ICP备12345678号</a>
+    </div>
+</div>
+
+<script>
+$(function(){
+    $(".side ul li").hover(function(){
+        $(this).find(".sidebox").stop().animate({"width":"124px"},200).css({"background":"#218ff2"})
+    },function(){
+        $(this).find(".sidebox").stop().animate({"width":"54px"},200).css({"background":"#000"})
+    });
+});
+//回到顶部函数
+function goTop(){
+    $('html,body').animate({'scrollTop':0},300);
+}
+</script>
