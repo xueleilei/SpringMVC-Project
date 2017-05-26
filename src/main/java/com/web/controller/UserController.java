@@ -64,30 +64,7 @@ public class UserController {
 		return "showUser";
 	}
 	
-	
-	
-	
-	// 根据用户名查询用户
-	@RequestMapping("/getName")
-	@ResponseBody
-	public void getName(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
-		String name = request.getParameter("name");
 
-		User user = userService.getUserByName(name);
-		//获取跨域JSONP callback参数，并返回页面
-		String callback = request.getParameter("callback");
-		callback = callback == null ? "" : callback;
-//		response.setContentType("application/x-javascript");
-//		response.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
-		try {
-			System.out.println("----Console 本次查找的用户名是："+user.getName());
-			out.write(callback +"({\"Code\":\"0000\",\"Name\":\""+user.getName()+"\",\"Password\":\""+user.getPassword()+"\"})"); //用户不存在
-		} catch (Exception e) {
-			out.write(callback +"({\"Code\":\"-1\"})"); //你查找的用户不存在！
-		}
-		
-	}
 	
 	// 根据ID查询用户的名称
 	@RequestMapping("/getUser")
@@ -112,6 +89,32 @@ public class UserController {
 
         out.flush();  
         out.close(); 
+	}
+	
+	
+	/**
+	 * 根据用户名查询用户
+	 * 精确查询
+	 * */
+	@RequestMapping("/getName")
+	@ResponseBody
+	public void getName(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
+		String name = request.getParameter("name");
+
+		User user = userService.getUserByName(name);
+		//获取跨域JSONP callback参数，并返回页面
+		String callback = request.getParameter("callback");
+		callback = callback == null ? "" : callback;
+//		response.setContentType("application/x-javascript");
+//		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		try {
+			System.out.println("----Console 本次查找的用户名是："+user.getName());
+			out.write(callback +"({\"Code\":\"0000\",\"Name\":\""+user.getName()+"\",\"Password\":\""+user.getPassword()+"\"})"); //用户存在
+		} catch (Exception e) {
+			out.write(callback +"({\"Code\":\"-1\"})"); //你查找的用户不存在！
+		}
+		
 	}
 	
 	
@@ -144,15 +147,27 @@ public class UserController {
 		PrintWriter out = response.getWriter();
 		
 		try {
-			userService.insertUser(user);
-			//model.addAttribute("user", "您添加的用户是：" + name + "，密码是：" + password);
-			System.out.println("----Console 本次添加的用户ID是："+user.getId()+"，用户名是："+user.getName()+"，状态：成功");
-			out.write(callback + "({\"success\":true,\"msg\":\"添加成功！\",\"id\":\""+user.getId()+"\",\"name\":\""+user.getName()+"\",\"password\":\""+user.getPassword()+"\",\"ipAddr\":\""+getIpAddr+"\"})");
+			User user2 = userService.getUserByName(request.getParameter("name"));
+			
+			if (user2.getName() != null) {
+				out.write(callback + "({\"Code\":1001,\"msg\":\"用户已经存在，添加失败！\"})");
+			}
 		} catch (Exception e) {
-			//model.addAttribute("user", "添加失败");
-			out.write(callback + "({\"success\":false,\"msg\":\"添加失败！\"})");
+			try {
+				userService.insertUser(user);
+				//model.addAttribute("user", "您添加的用户是：" + name + "，密码是：" + password);
+				System.out.println("----Console 本次添加的用户ID是："+user.getId()+"，用户名是："+user.getName()+"，状态：成功");
+				out.write(callback + "({\"Code\":0000,\"msg\":\"添加成功！\",\"id\":\""+user.getId()+"\",\"name\":\""+user.getName()+"\",\"password\":\""+user.getPassword()+"\",\"ipAddr\":\""+getIpAddr+"\"})");
+			} catch (Exception e2) {
+				//model.addAttribute("user", "添加失败");
+				out.write(callback + "({\"Code\":-1,\"msg\":\"系统错误，添加失败！\"})");
+			}
+			
 		}
-
+		
+		
+		
+		
 	}
 	
 	// 更新一个用户

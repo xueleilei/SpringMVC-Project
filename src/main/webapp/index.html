@@ -63,11 +63,6 @@
                 return false;
             }
 
-            //禁用登陆按钮
-            $("#submit").attr('disabled',"true");
-            $("#submit").html("登录中...");
-
-
             var qsData = {name:$("#name").val(), password:$("#password").val()};
             $.ajax({
                type: "GET",
@@ -76,28 +71,27 @@
                data: qsData,
                timeout: 5000,
                dataType: "jsonp",
-               jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-               jsonpCallback:"callbackFunction",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+               jsonp: "callback",
+               beforeSend: function () {
+					//禁用登陆按钮
+					$("#submit").attr('disabled',"true");
+					$("#submit").html("登录中...");
+               },
                success: function(json){
                    if(json.Code=='0000'){
                 	   layer.msg('登陆成功，正在跳转...');
-                       //启用登陆按钮
-                       $("#submit").removeAttr("disabled");
-                       $("#submit").html("立即登录");
-
-                        location.href = 'userController/listUser.do';
-                       
+                       location.href = 'userController/listUser.do';
                    }else{
                        $('.J_errorTips').show();
                        $('.J_errorTips').html('用户名或密码错误！');
                        console.log(json.errMsg);
-
-                       //启用登陆按钮
-                       $("#submit").removeAttr("disabled");
-                       $("#submit").html("立即登录");
-
                        return false;
                    }
+               },
+               complete:function(){
+            	   //启用登陆按钮
+                   $("#submit").removeAttr("disabled");
+                   $("#submit").html("立即登录");
                },
                error: function(XMLHttpRequest, textStatus, errorThrown){
                    $('.J_errorTips').show();

@@ -15,10 +15,9 @@
     function del_2(o){  
          document.getElementById("newUpload").removeChild(document.getElementById("div_"+o));  
     }  
-  
-</script> 
+</script>
 
-<div style='margin:50px auto;'>
+<div id="box" style='margin:50px auto;'>
     <h1>springMVC包装类上传文件</h1>   
     <form name="userForm" action="uploading.do" enctype="multipart/form-data" method="post">  
         <div id="newUpload">  
@@ -30,5 +29,78 @@
         </div>
           
     </form> 
+	<br>
+	<table class="table table-bordered table-hover table-striped">
+        <caption><h4>文件列表</h4></caption>
+        <thead>
+        <tr>
+            <th>文件名</th>
+            <th>路径</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        #foreach($file in $file_item)
+		<tr>
+			<td width="330">$file.name</td>
+			<td>${webSiteDomain}/uploadfile/$file.name</td>
+			<td>
+				<button id="$file.name" type="button" class="btn btn-danger btn-xs J_delete">删除</button>
+			</td>
+		</tr>
+		#end
+        </tbody>
+    </table>
+
+
 	
 </div>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	
+
+	//删除一个用户
+	$("body").on('click','.J_delete',function() {
+		var _this = $(this);
+		var _filename = $(this).attr('id');
+
+		layer.confirm('您确定要删除吗？确认后将不可恢复', {btn: ['删除','取消']}, function(){
+			//-------------
+			$.ajax({
+				type : "GET",
+				url : "${webSiteDomain}/file/delete.do",
+				data : {filename : _filename},
+				timeout: 5000,
+				dataType: "jsonp",//"xml", "html", "script", "json", "jsonp", "text".
+				jsonp: "callback",
+				beforeSend: function () {
+					layer.msg('正在处理…');
+				},
+				success : function(json) {
+					console.log(json);
+					if(json.Code=="0000"){
+						layer.msg('删除成功');
+						_this.parents('tr').remove();
+						
+					}else if(json.Code=="-1"){
+						layer.msg('删除失败');
+					}else{
+						layer.msg('服务器出现错误');
+					}
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown){
+					layer.msg('出现错误，系统可能出现异常情况！');
+					console.log("出现错误，系统可能出现异常情况！");
+				}
+			});
+			//------------------
+		});
+	});
+
+	
+
+});
+</script>

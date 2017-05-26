@@ -2,52 +2,52 @@
 #set($page_title="用户列表")
 
 <div style='margin:50px auto;'>
-	
+
 	<h4 id="search_row"></h4><br>
 	<div class="row">
 		<div class="col-xs-8"><input type="text" class="form-control" id='select' placeholder="请输入用户名称"></div>
-    	<div class="col-xs-4">
-    		<button type="button" class="btn btn-primary" id="J_select">查询</button>&nbsp;
-    	</div>
+		<div class="col-xs-4">
+			<button type="button" class="btn btn-primary" id="J_select">查询</button>&nbsp;
+		</div>
 	</div><br>
 	<div class="row">
 		<div class="col-xs-4"><input type="text" class="form-control" id='name' placeholder="请输入用户名"></div>
 		<div class="col-xs-4"><input type="text" class="form-control" id='password' placeholder="请输入用户密码"></div>
-    	<div class="col-xs-4">
-    		<button id="adduser" type="button" class="btn btn-success">添加</button>
-    	</div>
+		<div class="col-xs-4">
+			<button id="adduser" type="button" class="btn btn-success">添加</button>
+		</div>
 	</div><br>
 
-	
-	
+
+
 	<table class="table table-striped" style='border:1px solid #ddd;'>
-	    <caption>用户列表</caption>
-	    <thead>
-	        <tr>
-	            <th>ID</th>
-	            <th>NAME</th>
-	            <th>PASSWORD</th>
-	            <th>IP</th>
-	            <th>CONTROL</th>
-	        </tr>
-	    </thead>
-	    <tbody class='list'>
-	    	#foreach($user in $list)
-	        <tr id="$user.id">
-	            <td width='60'>$user.id</td>
-				<td>$user.name</td>
-				<td>$user.password</td>
-				<td><span class="J_ip">$user.ipAddr</span> <small class="J_getIpAddr" style="cursor:pointer;">查地址</small></td>
-				<td>
-					<button id="$user.id" type="button" class="btn btn-primary btn-xs J_edit">编辑</button>&nbsp;
-					<button id="$user.id" type="button" class="btn btn-danger btn-xs J_delete">删除</button>
-				</td>
-	        </tr>
-	        #end
-	    </tbody>
-	</table> 
-	
-	
+		<caption>用户列表</caption>
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>NAME</th>
+			<th>PASSWORD</th>
+			<th>IP</th>
+			<th>CONTROL</th>
+		</tr>
+		</thead>
+		<tbody class='list'>
+		#foreach($user in $list)
+		<tr id="J_$user.id">
+			<td width='60'>$user.id</td>
+			<td>$user.name</td>
+			<td>$user.password</td>
+			<td><span class="J_ip">$user.ipAddr</span><small class="J_getIpAddr" style="cursor:pointer;">查地址</small></td>
+			<td>
+				<button id="$user.id" type="button" class="btn btn-primary btn-xs J_edit">编辑</button>&nbsp;
+				<button id="$user.id" type="button" class="btn btn-danger btn-xs J_delete">删除</button>
+			</td>
+		</tr>
+		#end
+		</tbody>
+	</table>
+
+
 </div>
 
 
@@ -58,7 +58,7 @@
 
 
 	$(document).ready(function() {
-		
+
 		//根据用户名查询一个用户
 		$("button#J_select").click(function() {
 			var _thisval = $('input[id=select]').val();
@@ -67,77 +67,80 @@
 				url : "${webSiteDomain}/userController/getName.do",
 				data : {name : _thisval},
 				timeout: 5000,
-                dataType: "jsonp",
-                jsonp: "callback",
-                beforeSend: function () {
+				dataType: "jsonp",
+				jsonp: "callback",
+				beforeSend: function () {
 					$('#search_row').html("正在查询…");
-                },
+				},
 				success : function(json) {
-		
+
 					if(json.Code=='0000'){
 						layer.closeAll();
-                	   	$('#search_row').html("你查找的用户是："+json.Name+"，加密后的密文是："+json.Password);
-                   	}else if(json.Code=='-1'){
-                        layer.msg('你查找的用户不存在！');
-                        return false;
+						$('#search_row').html("你查找的用户是："+json.Name+"，加密后的密文是："+json.Password);
+						//console.log(json.list);
+					}else if(json.Code=='-1'){
+						$('#search_row').html("你查找的用户不存在！");
+						return false;
 					}
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown){
-                    layer.msg('出现错误，系统可能出现异常情况！');
-                    console.log("出现错误，系统可能出现异常情况！");
-                  
-                }
+					layer.msg('出现错误，系统可能出现异常情况！');
+					console.log("出现错误，系统可能出现异常情况！");
+
+				}
 			});
-			
+
 		});
-		
+
 		//添加一个新用户
-		$("body").on('click','button#adduser',function() {
+		$("button#adduser").on('click',function() {
 			var _thisname = $("#name").val();
 			var _thispassword = $("#password").val();
-			
+
 			$.ajax({
 				type : "POST",
 				url : "${webSiteDomain}/userController/insertUser.do",
 				data : {name : _thisname,password : _thispassword},
 				timeout: 5000,
-                dataType: "jsonp",//"xml", "html", "script", "json", "jsonp", "text".
-                jsonp: "callback",
-                beforeSend: function () {
-             	   layer.msg('正在保存…');
-                },
+				dataType: "jsonp",//"xml", "html", "script", "json", "jsonp", "text".
+				jsonp: "callback",
+				beforeSend: function () {
+					$('#search_row').html("正在保存…");
+				},
 				success : function(json) {
 					console.log(json);
-					layer.msg(json.msg);
-					if(json.success==true){
-						layer.msg(json.msg);
-						var html = "<tr>" +
-				            "<td width='60'>"+json.id+"</td>" +
-							"<td>"+json.name+"</td>" +
-							"<td>"+json.password+"</td>" +
-							"<td><span class='J_ip'>"+json.ipAddr+"</span> <small class='J_getIpAddr' style='cursor:pointer;'>查地址</small></td>" +
-							"<td>" +
+					
+					if(json.Code=='0000'){
+						layer.msg('添加成功！');
+						$('#search_row').html("");
+						var html = "<tr id='J_"+json.id+"'>" +
+								"<td width='60'>"+json.id+"</td>" +
+								"<td>"+json.name+"</td>" +
+								"<td>"+json.password+"</td>" +
+								"<td><span class='J_ip'>"+json.ipAddr+"</span> <small class='J_getIpAddr' style='cursor:pointer;'>查地址</small></td>" +
+								"<td>" +
 								"<button id="+json.id+" type='button' class='btn btn-primary btn-xs J_edit'>编辑</button>&nbsp;" +
 								"<button id="+json.id+" type='button' class='btn btn-danger btn-xs J_delete'>删除</button>" +
-							"</td>" +
-				        "</tr>";
-				        //$(".list").prependTo(html);
-				        $(html).prependTo(".list"); 
-				        $("#name").val("");
-				        $("#password").val("");
-					}else if(json.success==false){
-						layer.msg(json.msg);
-						layer.msg('0----');
+								"</td>" +
+								"</tr>";
+						//$(".list").prependTo(html);
+						$(html).prependTo(".list");
+						$("#name").val("");
+						$("#password").val("");
+					}else if(json.Code=='1001'){
+						$('#search_row').html("<font color='red'>该用户已经存在，请换一个用户名。</font>");
+					}else if(json.Code=='-1'){
+						layer.msg('出现错误，系统可能出现异常情况！');
 					}
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown){
-                    layer.msg('出现错误，系统可能出现异常情况！');
-                    console.log("出现错误，系统可能出现异常情况！");
-                  
-                }
+					layer.msg('出现错误，系统可能出现异常情况！');
+					console.log("出现错误，系统可能出现异常情况！");
+
+				}
 			});
 		});
-		
+
 		//删除一个用户
 		$("body").on('click','.J_delete',function() {
 			var _thisid = $(this).attr('id');
@@ -148,16 +151,16 @@
 					url : "${webSiteDomain}/userController/deleteUser.do",
 					data : {id : _thisid},
 					timeout: 5000,
-	                dataType: "jsonp",//"xml", "html", "script", "json", "jsonp", "text".
-	                jsonp: "callback",
-	                beforeSend: function () {
-	             	   layer.msg('正在处理…');
-	                },
+					dataType: "jsonp",//"xml", "html", "script", "json", "jsonp", "text".
+					jsonp: "callback",
+					beforeSend: function () {
+						layer.msg('正在处理…');
+					},
 					success : function(json) {
 						console.log(json);
 						if(json.Code=="0000"){
 							layer.msg('删除成功');
-							$('#'+_thisid).parents('tr').remove();
+							$('#J_'+_thisid).remove();
 						}else if(json.Code=="-1"){
 							layer.msg('删除失败');
 						}else{
@@ -165,11 +168,11 @@
 						}
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown){
-	                    layer.msg('出现错误，系统可能出现异常情况！');
-	                    console.log("出现错误，系统可能出现异常情况！");
-	                }
+						layer.msg('出现错误，系统可能出现异常情况！');
+						console.log("出现错误，系统可能出现异常情况！");
+					}
 				});
-			  	//------------------
+				//------------------
 			});
 		});
 
@@ -177,108 +180,108 @@
 		$("body").on('click','.J_edit',function() {
 			var _thisid = $(this).attr('id');
 			//location.href='${webSiteDomain}/userController/getUserName.do?id='+_thisid;
-			
+
 			var qsData = {id:_thisid};
 			$.ajax({
-			   type: "GET",
-			   
-               async: true,
-			   url : "getUser.do",
-			   data: qsData,
-               timeout: 5000,
-               dataType: "jsonp",
-               jsonp: "callback",
-               beforeSend: function () {
-            	   layer.msg('加载中…');
-               },
-                success: function(json){
-                    if(json.success==true){
-                 	   //----------------
-                    	layer.open({
-                            type: 1,
-                            title:'编辑用户',
-                            scrollbar: false, //锁定滚动条
-                            skin: 'layui-layer-rim', //加上边框
-                            area: ['400px', '320px'], //宽高
-                            content: '<div class="editDiv" style="padding:20px;"><form name="form" method="post">'+
-                            	'<input type="hidden" class="form-control" value="'+json.id+'" name="id" id="id">'+
-                            '<div class="form-group">'+
-                             '   <label for="name">用户名:</label>'+
-                             '   <input type="text" class="form-control" name="name" id="name" value="'+json.name+'">'+
-                            '</div>'+
-                            '<div class="form-group">'+
-                            '    <label for="password">密码: </label>'+
-                            '    <input type="text" class="form-control" name="password" id="password" value="">'+
-                            '</div>'+
-                            '<button type="button" id="J_editSubmit" class="btn btn-primary btn-block">保存修改</button>'+
-                        '</form></div>'
-                        });
-                    	//--------------
-                    }else{
-                        layer.msg('获取用户信息失败');
-                        return false;
-                    }
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown){
-                    layer.msg('出现错误，系统可能出现异常情况！');
-                    console.log("出现错误，系统可能出现异常情况！");
-                  
-                }
-             });
-			
+				type: "GET",
+
+				async: true,
+				url : "getUser.do",
+				data: qsData,
+				timeout: 5000,
+				dataType: "jsonp",
+				jsonp: "callback",
+				beforeSend: function () {
+					layer.msg('加载中…');
+				},
+				success: function(json){
+					if(json.success==true){
+						//----------------
+						layer.open({
+							type: 1,
+							title:'编辑用户',
+							scrollbar: false, //锁定滚动条
+							skin: 'layui-layer-rim', //加上边框
+							area: ['400px', '320px'], //宽高
+							content: '<div class="editDiv" style="padding:20px;"><form name="form" method="post">'+
+							'<input type="hidden" class="form-control" value="'+json.id+'" name="id" id="id">'+
+							'<div class="form-group">'+
+							'   <label for="name">用户名:</label>'+
+							'   <input type="text" class="form-control" name="name" id="name" value="'+json.name+'">'+
+							'</div>'+
+							'<div class="form-group">'+
+							'    <label for="password">密码: </label>'+
+							'    <input type="text" class="form-control" name="password" id="password" value="">'+
+							'</div>'+
+							'<button type="button" id="J_editSubmit" class="btn btn-primary btn-block">保存修改</button>'+
+							'</form></div>'
+						});
+						//--------------
+					}else{
+						layer.msg('获取用户信息失败');
+						return false;
+					}
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown){
+					layer.msg('出现错误，系统可能出现异常情况！');
+					console.log("出现错误，系统可能出现异常情况！");
+
+				}
+			});
+
 		});
-		
-		
-		
+
+
+
 		//编辑用户,保存用户数据
 		$("body").on('click',"button#J_editSubmit",function(){
 			var id = $(this).parents('.editDiv').find('input#id').val();
 			var name = $(this).parents('.editDiv').find('input#name').val();
 			var password = $(this).parents('.editDiv').find("input#password").val();
-            //验证
-            if(name == '') {layer.msg('请输入用户名！');$("#name").focus();return false;}
-            if(password == ''){layer.msg('请输入密码!');$("#password").focus();return false;}
+			//验证
+			if(name == '') {layer.msg('请输入用户名！');$("#name").focus();return false;}
+			if(password == ''){layer.msg('请输入密码!');$("#password").focus();return false;}
 
-            var qsData = {id:id,name:name, password:password};
-            $.ajax({
-               type: "POST",
-               scriptCharset: 'utf-8',
-               async: false,
-               url: "updateUser.do",
-               data: qsData,
-               timeout: 5000,
-               dataType: "jsonp",
-               jsonp: "callback",
-               beforeSend: function () {
-            	   layer.msg('正在保存…');
-               },
-               success: function(json){
-                   if(json.Code=='0000'){
-                	   layer.closeAll();
-                	   $("tr#"+id+" td:nth-child(2)").html(json.name);
-                	   $("tr#"+id+" td:nth-child(3)").html(json.password);
-                	   $("tr#"+id+" td:nth-child(4) span").html(json.ipAddr);
-                	   layer.msg('更新成功');
-                   }else if(json.Code=='-1'){
-                	   layer.closeAll();
-                       layer.msg('更新失败');
-                       return false;
-                   }
-               },
-               error: function(XMLHttpRequest, textStatus, errorThrown){
-                   layer.msg('出现错误，系统可能出现异常情况！');
-                   console.log("出现错误，系统可能出现异常情况！");
-                 
-               }
-            });
-        });
-		
-		
-		
-		
-		
-		
-		
+			var qsData = {id:id,name:name, password:password};
+			$.ajax({
+				type: "POST",
+				scriptCharset: 'utf-8',
+				async: false,
+				url: "updateUser.do",
+				data: qsData,
+				timeout: 5000,
+				dataType: "jsonp",
+				jsonp: "callback",
+				beforeSend: function () {
+					layer.msg('正在保存…');
+				},
+				success: function(json){
+					if(json.Code=='0000'){
+						layer.closeAll();
+						$("tr#"+id+" td:nth-child(2)").html(json.name);
+						$("tr#"+id+" td:nth-child(3)").html(json.password);
+						$("tr#"+id+" td:nth-child(4) span").html(json.ipAddr);
+						layer.msg('更新成功');
+					}else if(json.Code=='-1'){
+						layer.closeAll();
+						layer.msg('更新失败');
+						return false;
+					}
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown){
+					layer.msg('出现错误，系统可能出现异常情况！');
+					console.log("出现错误，系统可能出现异常情况！");
+
+				}
+			});
+		});
+
+
+
+
+
+
+
 		//查询IP
 		$("body").on('click','.J_getIpAddr',function() {
 			var ip = $(this).prev('.J_ip').html();
@@ -286,55 +289,55 @@
 			getIpAddrCHINAZ(ip,_thisdom)
 		});
 
-		
+
 
 	});
 	function getIpAddrCHINAZ(ip,_thisdom){
-       var ip;
-       $.ajax({
-           type: "GET",
-           async: false,
-           url: "http://ip.chinaz.com/ajaxsync.aspx?at=ipbatch",
-           data: "ip=" + ip,
-           timeout: 5000,
-           dataType: "jsonp",
-           jsonp: "callback",
-           beforeSend: function () {
-        	   _thisdom.html("(查询中…)");
-           },
-           success: function(data){
-               //console.log(data);
-               _thisdom.html("("+data[0].location+")");
-           },
-           error: function(XMLHttpRequest, textStatus, errorThrown){
-        	   layer.msg("查询出现错误，系统可能出现异常情况！");
-               console.log("出现错误，系统可能出现异常情况！");
-           }
-       });
+		var ip;
+		$.ajax({
+			type: "GET",
+			async: false,
+			url: "http://ip.chinaz.com/ajaxsync.aspx?at=ipbatch",
+			data: "ip=" + ip,
+			timeout: 5000,
+			dataType: "jsonp",
+			jsonp: "callback",
+			beforeSend: function () {
+				_thisdom.html("(查询中…)");
+			},
+			success: function(data){
+				//console.log(data);
+				_thisdom.html("("+data[0].location+")");
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				layer.msg("查询出现错误，系统可能出现异常情况！");
+				console.log("出现错误，系统可能出现异常情况！");
+			}
+		});
 	}
 	function getIpAddrIP138(ip,_thisdom){
-       var ip;
-       $.ajax({
-		type : "GET",
-		url : "http://api.ip138.com/query/?ip="+ip+"&oid=3189&mid=68063&token=a7c067c198d87bd70165ddba436a93bc",
-       	dataType: "jsonp",
-       	jsonp: "callback",
-       	jsonpCallback:"find",
-       	beforeSend: function () {
-     	   _thisdom.html("(查询中…)");
-        },
-       	success: function(json){
-       		var data = json.data;
-              	if(json.ret=='ok'){
-              		_thisdom.html("("+data+")");
-              	}else{
-              		_this.html("ERROR");
-                  	return false;
-              	}
-      		},
+		var ip;
+		$.ajax({
+			type : "GET",
+			url : "http://api.ip138.com/query/?ip="+ip+"&oid=3189&mid=68063&token=a7c067c198d87bd70165ddba436a93bc",
+			dataType: "jsonp",
+			jsonp: "callback",
+			jsonpCallback:"find",
+			beforeSend: function () {
+				_thisdom.html("(查询中…)");
+			},
+			success: function(json){
+				var data = json.data;
+				if(json.ret=='ok'){
+					_thisdom.html("("+data+")");
+				}else{
+					_this.html("ERROR");
+					return false;
+				}
+			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
-              	layer.msg("查询出现错误，系统可能出现异常情况！");
-              	console.log("查询出现错误，系统可能出现异常情况！");
+				layer.msg("查询出现错误，系统可能出现异常情况！");
+				console.log("查询出现错误，系统可能出现异常情况！");
 			}
 		});
 	}
