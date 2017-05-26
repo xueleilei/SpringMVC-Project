@@ -1,0 +1,446 @@
+[DEBUG][2017-01-11 13:04:16,166][javapns.notification.Payload]Adding alert [给你发信息了]
+[DEBUG][2017-01-11 13:04:16,167][javapns.notification.Payload]Adding badge [3]
+[DEBUG][2017-01-11 13:04:16,168][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-11 13:04:16,168][javapns.notification.Payload]Adding alert [给你发信息了] replacing previous alert [给你发信息了]
+[DEBUG][2017-01-11 13:04:16,168][javapns.notification.Payload]Adding badge [3]
+[DEBUG][2017-01-11 13:04:16,174][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-11 13:04:16,713][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-11 13:04:16,742][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-11 13:04:17,084][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.sandbox.push.apple.com] Port: [2195]: 4fe3c938[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.sandbox.push.apple.com/17.188.136.189,port=2195,localport=64094]]
+[DEBUG][2017-01-11 13:04:17,089][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-11 13:04:17,091][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 111
+[DEBUG][2017-01-11 13:04:17,093][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":3,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-11 13:04:17,094][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[INFO][2017-01-11 13:04:17,464][javapns.notification.PushNotificationManager]Attempt failed (Received fatal alert: internal_error)... trying again
+[DEBUG][2017-01-11 13:04:17,464][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-11 13:04:17,746][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":3,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-11 13:04:17,747][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[INFO][2017-01-11 13:04:18,417][javapns.notification.PushNotificationManager]Attempt failed (Received fatal alert: internal_error)... trying again
+[DEBUG][2017-01-11 13:04:18,418][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-11 13:04:18,610][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":3,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-11 13:04:18,610][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[ERROR][2017-01-11 13:04:18,995][javapns.notification.PushNotificationManager]Attempt to send Notification failed and beyond the maximum number of attempts permitted
+[ERROR][2017-01-11 13:04:18,996][javapns.notification.PushNotificationManager]Delivery error
+javax.net.ssl.SSLException: Received fatal alert: internal_error
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:208)
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:154)
+	at sun.security.ssl.SSLSocketImpl.recvAlert(SSLSocketImpl.java:2023)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1125)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1375)
+	at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:747)
+	at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:123)
+	at java.io.OutputStream.write(OutputStream.java:75)
+	at javapns.notification.PushNotificationManager.sendNotification(PushNotificationManager.java:460)
+	at javapns.notification.PushNotificationManager.sendNotification(PushNotificationManager.java:402)
+	at javapns.notification.PushNotificationManager.sendNotification(PushNotificationManager.java:357)
+	at com.web.controller.ApnsSend.pushAlert(ApnsSend.java:58)
+	at com.web.controller.ApnsSend.main(ApnsSend.java:30)
+[ERROR][2017-01-11 13:04:18,999][javapns.notification.PushNotificationManager]Delivery error: javax.net.ssl.SSLException: Received fatal alert: internal_error
+[ERROR][2017-01-11 13:04:19,000][javapns.notification.PushNotificationManager]Closing connection after error
+[DEBUG][2017-01-11 13:04:19,000][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-11 13:04:19,001][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-11 13:04:19,001][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-11 13:04:19,001][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-11 13:07:43,393][javapns.notification.Payload]Adding alert [给你发信息了]
+[DEBUG][2017-01-11 13:07:43,396][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-11 13:07:43,396][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-11 13:07:43,396][javapns.notification.Payload]Adding alert [给你发信息了] replacing previous alert [给你发信息了]
+[DEBUG][2017-01-11 13:07:43,397][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-11 13:07:43,404][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-11 13:07:43,927][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-11 13:07:43,958][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-11 13:07:44,306][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.sandbox.push.apple.com] Port: [2195]: 4fe3c938[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.sandbox.push.apple.com/17.188.136.189,port=2195,localport=64288]]
+[DEBUG][2017-01-11 13:07:44,309][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-11 13:07:44,310][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 111
+[DEBUG][2017-01-11 13:07:44,311][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-11 13:07:44,311][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[INFO][2017-01-11 13:07:44,709][javapns.notification.PushNotificationManager]Attempt failed (Received fatal alert: internal_error)... trying again
+[DEBUG][2017-01-11 13:07:44,710][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-11 13:07:44,956][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-11 13:07:44,956][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[INFO][2017-01-11 13:07:45,552][javapns.notification.PushNotificationManager]Attempt failed (Received fatal alert: internal_error)... trying again
+[DEBUG][2017-01-11 13:07:45,552][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-11 13:07:45,820][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-11 13:07:45,820][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[ERROR][2017-01-11 13:07:46,430][javapns.notification.PushNotificationManager]Attempt to send Notification failed and beyond the maximum number of attempts permitted
+[ERROR][2017-01-11 13:07:46,431][javapns.notification.PushNotificationManager]Delivery error
+javax.net.ssl.SSLException: Received fatal alert: internal_error
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:208)
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:154)
+	at sun.security.ssl.SSLSocketImpl.recvAlert(SSLSocketImpl.java:2023)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1125)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1375)
+	at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:747)
+	at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:123)
+	at java.io.OutputStream.write(OutputStream.java:75)
+	at javapns.notification.PushNotificationManager.sendNotification(PushNotificationManager.java:460)
+	at javapns.notification.PushNotificationManager.sendNotification(PushNotificationManager.java:402)
+	at javapns.notification.PushNotificationManager.sendNotification(PushNotificationManager.java:357)
+	at com.web.controller.ApnsSend.pushAlert(ApnsSend.java:58)
+	at com.web.controller.ApnsSend.main(ApnsSend.java:30)
+[ERROR][2017-01-11 13:07:46,437][javapns.notification.PushNotificationManager]Delivery error: javax.net.ssl.SSLException: Received fatal alert: internal_error
+[ERROR][2017-01-11 13:07:46,437][javapns.notification.PushNotificationManager]Closing connection after error
+[DEBUG][2017-01-11 13:07:46,437][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-11 13:07:46,438][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-11 13:07:46,438][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-11 13:07:46,438][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-11 13:12:00,402][javapns.notification.Payload]Adding alert [给你发信息了]
+[DEBUG][2017-01-11 13:12:00,406][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-11 13:12:00,407][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-11 13:12:00,409][javapns.notification.Payload]Adding alert [给你发信息了] replacing previous alert [给你发信息了]
+[DEBUG][2017-01-11 13:12:00,410][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-11 13:12:00,420][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-11 13:22:01,521][javapns.notification.Payload]Adding alert [给你发信息了]
+[DEBUG][2017-01-11 13:22:01,525][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-11 13:22:01,525][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-11 13:22:01,525][javapns.notification.Payload]Adding alert [给你发信息了] replacing previous alert [给你发信息了]
+[DEBUG][2017-01-11 13:22:01,525][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-11 13:22:01,533][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-11 13:22:02,258][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-11 13:22:02,377][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-11 13:22:02,746][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.sandbox.push.apple.com] Port: [2195]: 4fe3c938[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.sandbox.push.apple.com/17.188.136.189,port=2195,localport=64882]]
+[DEBUG][2017-01-11 13:22:02,754][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-11 13:22:02,755][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 111
+[DEBUG][2017-01-11 13:22:02,757][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-11 13:22:02,757][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[DEBUG][2017-01-11 13:22:03,316][javapns.notification.PushNotificationManager]Flushing
+[DEBUG][2017-01-11 13:22:03,316][javapns.notification.PushNotificationManager]At this point, the entire 111-bytes message has been streamed out successfully through the SSL connection
+[DEBUG][2017-01-11 13:22:03,316][javapns.notification.PushNotificationManager]Notification sent on first attempt
+[DEBUG][2017-01-11 13:22:03,317][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-11 13:22:03,321][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-11 13:22:33,249][javapns.notification.Payload]Adding alert [给你发信息了]
+[DEBUG][2017-01-11 13:22:33,251][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-11 13:22:33,252][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-11 13:22:33,252][javapns.notification.Payload]Adding alert [给你发信息了] replacing previous alert [给你发信息了]
+[DEBUG][2017-01-11 13:22:33,252][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-11 13:22:33,256][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-11 13:22:33,784][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-11 13:22:33,816][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-11 13:22:35,272][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.sandbox.push.apple.com] Port: [2195]: 4fe3c938[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.sandbox.push.apple.com/17.188.136.189,port=2195,localport=64890]]
+[DEBUG][2017-01-11 13:22:35,278][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-11 13:22:35,279][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 111
+[DEBUG][2017-01-11 13:22:35,280][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-11 13:22:35,281][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[DEBUG][2017-01-11 13:22:36,195][javapns.notification.PushNotificationManager]Flushing
+[DEBUG][2017-01-11 13:22:36,196][javapns.notification.PushNotificationManager]At this point, the entire 111-bytes message has been streamed out successfully through the SSL connection
+[DEBUG][2017-01-11 13:22:36,196][javapns.notification.PushNotificationManager]Notification sent on first attempt
+[DEBUG][2017-01-11 13:22:36,196][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-11 13:22:36,201][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-11 13:33:21,176][javapns.notification.Payload]Adding alert [test push message to ios device]
+[DEBUG][2017-01-11 13:33:21,178][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-11 13:33:21,179][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-11 13:33:21,722][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-11 13:33:21,779][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.push.apple.com:2195
+[DEBUG][2017-01-11 13:33:22,236][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.push.apple.com] Port: [2195]: 3327bd23[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.push.apple.com/17.188.164.77,port=2195,localport=65524]]
+[DEBUG][2017-01-11 13:33:22,253][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-11 13:33:22,253][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 124
+[DEBUG][2017-01-11 13:33:22,255][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"test push message to ios device","sound":"default"}}
+[DEBUG][2017-01-11 13:33:22,255][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[DEBUG][2017-01-11 13:33:23,159][javapns.notification.PushNotificationManager]Flushing
+[DEBUG][2017-01-11 13:33:23,160][javapns.notification.PushNotificationManager]At this point, the entire 124-bytes message has been streamed out successfully through the SSL connection
+[DEBUG][2017-01-11 13:33:23,160][javapns.notification.PushNotificationManager]Notification sent on first attempt
+[DEBUG][2017-01-11 13:33:23,163][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-11 13:33:23,171][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-11 13:35:55,709][javapns.notification.Payload]Adding alert [test push message to ios device]
+[DEBUG][2017-01-11 13:35:55,711][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-11 13:35:56,312][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-11 13:35:56,350][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.push.apple.com:2195
+[DEBUG][2017-01-11 13:35:56,759][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.push.apple.com] Port: [2195]: 5cb9f472[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.push.apple.com/17.188.152.163,port=2195,localport=49200]]
+[DEBUG][2017-01-11 13:35:56,762][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-11 13:35:56,762][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 106
+[DEBUG][2017-01-11 13:35:56,763][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"test push message to ios device"}}
+[DEBUG][2017-01-11 13:35:56,763][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[DEBUG][2017-01-11 13:35:57,679][javapns.notification.PushNotificationManager]Flushing
+[DEBUG][2017-01-11 13:35:57,679][javapns.notification.PushNotificationManager]At this point, the entire 106-bytes message has been streamed out successfully through the SSL connection
+[DEBUG][2017-01-11 13:35:57,679][javapns.notification.PushNotificationManager]Notification sent on first attempt
+[DEBUG][2017-01-11 13:35:57,679][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-11 13:35:57,682][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-11 13:42:13,531][javapns.notification.Payload]Adding alert [test push message to ios device]
+[DEBUG][2017-01-11 13:42:13,533][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-11 13:42:14,046][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-11 13:42:14,080][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.push.apple.com:2195
+[DEBUG][2017-01-11 13:42:14,451][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.push.apple.com] Port: [2195]: 5cb9f472[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.push.apple.com/17.188.146.34,port=2195,localport=49692]]
+[ERROR][2017-01-11 13:42:14,457][javapns.notification.PushNotificationManager]Delivery error: javapns.devices.exceptions.InvalidDeviceTokenFormatException: Device Token has a length of [71] and not the required 64 bytes!
+[ERROR][2017-01-11 13:42:14,458][javapns.notification.PushNotificationManager]Closing connection after error
+[DEBUG][2017-01-11 13:42:14,459][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-11 13:42:15,128][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-11 13:42:15,129][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-11 13:42:15,129][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-11 13:42:34,419][javapns.notification.Payload]Adding alert [test push message to ios device]
+[DEBUG][2017-01-11 13:42:34,420][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-11 13:42:34,994][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-11 13:42:35,034][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.push.apple.com:2195
+[DEBUG][2017-01-11 13:42:35,396][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.push.apple.com] Port: [2195]: 5cb9f472[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.push.apple.com/17.188.145.162,port=2195,localport=49712]]
+[DEBUG][2017-01-11 13:42:35,400][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-11 13:42:35,401][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 106
+[DEBUG][2017-01-11 13:42:35,402][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"test push message to ios device"}}
+[DEBUG][2017-01-11 13:42:35,402][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[DEBUG][2017-01-11 13:42:36,225][javapns.notification.PushNotificationManager]Flushing
+[DEBUG][2017-01-11 13:42:36,225][javapns.notification.PushNotificationManager]At this point, the entire 106-bytes message has been streamed out successfully through the SSL connection
+[DEBUG][2017-01-11 13:42:36,225][javapns.notification.PushNotificationManager]Notification sent on first attempt
+[DEBUG][2017-01-11 13:42:36,225][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-11 13:42:36,229][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-11 13:51:24,325][javapns.notification.Payload]Adding alert [test push message to ios device]
+[DEBUG][2017-01-11 13:51:24,327][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-11 13:51:24,873][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-11 13:51:24,964][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.push.apple.com:2195
+[DEBUG][2017-01-11 13:51:26,388][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.push.apple.com] Port: [2195]: 5cb9f472[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.push.apple.com/17.188.151.29,port=2195,localport=49906]]
+[DEBUG][2017-01-11 13:51:26,391][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-11 13:51:26,391][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 106
+[DEBUG][2017-01-11 13:51:26,392][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"test push message to ios device"}}
+[DEBUG][2017-01-11 13:51:26,392][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[DEBUG][2017-01-11 13:51:27,373][javapns.notification.PushNotificationManager]Flushing
+[DEBUG][2017-01-11 13:51:27,374][javapns.notification.PushNotificationManager]At this point, the entire 106-bytes message has been streamed out successfully through the SSL connection
+[DEBUG][2017-01-11 13:51:27,374][javapns.notification.PushNotificationManager]Notification sent on first attempt
+[DEBUG][2017-01-11 13:51:27,374][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-11 13:51:27,376][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-11 15:11:21,907][javapns.notification.Payload]Adding alert [test push message to ios device]
+[DEBUG][2017-01-11 15:11:21,910][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-11 15:11:22,289][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-11 15:11:22,322][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.push.apple.com:2195
+[DEBUG][2017-01-11 15:11:22,694][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.push.apple.com] Port: [2195]: 5cb9f472[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.push.apple.com/17.188.165.74,port=2195,localport=52991]]
+[DEBUG][2017-01-11 15:11:22,696][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-11 15:11:22,697][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 106
+[DEBUG][2017-01-11 15:11:22,698][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"test push message to ios device"}}
+[DEBUG][2017-01-11 15:11:22,698][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[DEBUG][2017-01-11 15:11:23,714][javapns.notification.PushNotificationManager]Flushing
+[DEBUG][2017-01-11 15:11:23,714][javapns.notification.PushNotificationManager]At this point, the entire 106-bytes message has been streamed out successfully through the SSL connection
+[DEBUG][2017-01-11 15:11:23,714][javapns.notification.PushNotificationManager]Notification sent on first attempt
+[DEBUG][2017-01-11 15:11:23,715][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-11 15:11:23,717][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-11 16:08:28,811][javapns.notification.Payload]Adding alert [给你发信息了]
+[DEBUG][2017-01-11 16:08:28,815][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-11 16:08:28,815][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-11 16:08:28,815][javapns.notification.Payload]Adding alert [给你发信息了] replacing previous alert [给你发信息了]
+[DEBUG][2017-01-11 16:08:28,815][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-11 16:08:28,821][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-11 16:08:29,319][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-11 16:08:29,353][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-11 16:08:29,768][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.sandbox.push.apple.com] Port: [2195]: 25bbe1b6[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.sandbox.push.apple.com/17.188.136.189,port=2195,localport=56141]]
+[DEBUG][2017-01-11 16:08:29,770][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-11 16:08:29,771][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 111
+[DEBUG][2017-01-11 16:08:29,771][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-11 16:08:29,771][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[DEBUG][2017-01-11 16:08:30,538][javapns.notification.PushNotificationManager]Flushing
+[DEBUG][2017-01-11 16:08:30,538][javapns.notification.PushNotificationManager]At this point, the entire 111-bytes message has been streamed out successfully through the SSL connection
+[DEBUG][2017-01-11 16:08:30,538][javapns.notification.PushNotificationManager]Notification sent on first attempt
+[DEBUG][2017-01-11 16:08:30,538][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-11 16:08:30,541][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-12 09:44:51,475][javapns.notification.Payload]Adding alert [给你发信息了]
+[DEBUG][2017-01-12 09:44:51,477][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-12 09:44:51,478][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-12 09:44:51,478][javapns.notification.Payload]Adding alert [给你发信息了] replacing previous alert [给你发信息了]
+[DEBUG][2017-01-12 09:44:51,478][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-12 09:44:51,484][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-12 09:45:18,962][javapns.notification.Payload]Adding alert [给你发信息了]
+[DEBUG][2017-01-12 09:45:18,963][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-12 09:45:18,964][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-12 09:45:18,964][javapns.notification.Payload]Adding alert [给你发信息了] replacing previous alert [给你发信息了]
+[DEBUG][2017-01-12 09:45:18,964][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-12 09:45:18,970][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-12 09:45:19,526][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-12 09:45:19,579][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-12 09:45:19,965][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.sandbox.push.apple.com] Port: [2195]: 25bbe1b6[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.sandbox.push.apple.com/17.188.132.189,port=2195,localport=57559]]
+[DEBUG][2017-01-12 09:45:19,968][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-12 09:45:19,969][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 111
+[DEBUG][2017-01-12 09:45:19,970][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-12 09:45:19,970][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[INFO][2017-01-12 09:45:20,452][javapns.notification.PushNotificationManager]Attempt failed (Received fatal alert: internal_error)... trying again
+[DEBUG][2017-01-12 09:45:20,453][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-12 09:45:20,655][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-12 09:45:20,655][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[INFO][2017-01-12 09:45:21,167][javapns.notification.PushNotificationManager]Attempt failed (Received fatal alert: internal_error)... trying again
+[DEBUG][2017-01-12 09:45:21,167][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-12 09:45:21,396][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-12 09:45:21,396][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[ERROR][2017-01-12 09:45:22,849][javapns.notification.PushNotificationManager]Attempt to send Notification failed and beyond the maximum number of attempts permitted
+[ERROR][2017-01-12 09:45:22,850][javapns.notification.PushNotificationManager]Delivery error
+javax.net.ssl.SSLException: Received fatal alert: internal_error
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:208)
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:154)
+	at sun.security.ssl.SSLSocketImpl.recvAlert(SSLSocketImpl.java:2023)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1125)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1375)
+	at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:747)
+	at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:123)
+	at java.io.OutputStream.write(OutputStream.java:75)
+	at javapns.notification.PushNotificationManager.sendNotification(PushNotificationManager.java:402)
+	at javapns.notification.PushNotificationManager.sendNotification(PushNotificationManager.java:350)
+	at javapns.notification.PushNotificationManager.sendNotification(PushNotificationManager.java:320)
+	at com.web.controller.PushIOS.pushAlert(PushIOS.java:60)
+	at com.web.controller.PushIOS.main(PushIOS.java:32)
+[ERROR][2017-01-12 09:45:22,855][javapns.notification.PushNotificationManager]Delivery error: javax.net.ssl.SSLException: Received fatal alert: internal_error
+[ERROR][2017-01-12 09:45:22,855][javapns.notification.PushNotificationManager]Closing connection after error
+[DEBUG][2017-01-12 09:45:22,855][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-12 09:45:22,857][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-12 09:45:22,857][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-12 09:45:22,857][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-12 09:45:57,685][javapns.notification.Payload]Adding alert [给你发信息了]
+[DEBUG][2017-01-12 09:45:57,686][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-12 09:45:57,687][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-12 09:45:57,687][javapns.notification.Payload]Adding alert [给你发信息了] replacing previous alert [给你发信息了]
+[DEBUG][2017-01-12 09:45:57,687][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-12 09:45:57,691][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-12 09:45:58,139][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-12 09:45:58,165][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-12 09:45:59,454][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.sandbox.push.apple.com] Port: [2195]: 25bbe1b6[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.sandbox.push.apple.com/17.188.136.189,port=2195,localport=57625]]
+[DEBUG][2017-01-12 09:45:59,457][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-12 09:45:59,458][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 111
+[DEBUG][2017-01-12 09:45:59,459][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-12 09:45:59,459][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[INFO][2017-01-12 09:46:00,093][javapns.notification.PushNotificationManager]Attempt failed (Received fatal alert: internal_error)... trying again
+[DEBUG][2017-01-12 09:46:00,094][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-12 09:46:00,255][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-12 09:46:00,256][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[INFO][2017-01-12 09:46:00,647][javapns.notification.PushNotificationManager]Attempt failed (Received fatal alert: internal_error)... trying again
+[DEBUG][2017-01-12 09:46:00,647][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-12 09:46:00,869][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-12 09:46:00,870][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[ERROR][2017-01-12 09:46:01,270][javapns.notification.PushNotificationManager]Attempt to send Notification failed and beyond the maximum number of attempts permitted
+[ERROR][2017-01-12 09:46:01,270][javapns.notification.PushNotificationManager]Delivery error
+javax.net.ssl.SSLException: Received fatal alert: internal_error
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:208)
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:154)
+	at sun.security.ssl.SSLSocketImpl.recvAlert(SSLSocketImpl.java:2023)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1125)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1375)
+	at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:747)
+	at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:123)
+	at java.io.OutputStream.write(OutputStream.java:75)
+	at javapns.notification.PushNotificationManager.sendNotification(PushNotificationManager.java:402)
+	at javapns.notification.PushNotificationManager.sendNotification(PushNotificationManager.java:350)
+	at javapns.notification.PushNotificationManager.sendNotification(PushNotificationManager.java:320)
+	at com.web.controller.ApnsSend.pushAlert(ApnsSend.java:58)
+	at com.web.controller.ApnsSend.main(ApnsSend.java:30)
+[ERROR][2017-01-12 09:46:01,274][javapns.notification.PushNotificationManager]Delivery error: javax.net.ssl.SSLException: Received fatal alert: internal_error
+[ERROR][2017-01-12 09:46:01,274][javapns.notification.PushNotificationManager]Closing connection after error
+[DEBUG][2017-01-12 09:46:01,275][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-12 09:46:01,276][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-12 09:46:01,276][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-12 09:46:01,276][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-12 09:46:30,176][javapns.notification.Payload]Adding alert [test push message to ios device]
+[DEBUG][2017-01-12 09:46:30,179][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-12 09:46:30,602][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-12 09:46:30,635][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.push.apple.com:2195
+[DEBUG][2017-01-12 09:46:32,046][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.push.apple.com] Port: [2195]: 5cb9f472[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.push.apple.com/17.188.133.26,port=2195,localport=57664]]
+[DEBUG][2017-01-12 09:46:32,049][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-12 09:46:32,050][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 106
+[DEBUG][2017-01-12 09:46:32,053][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"test push message to ios device"}}
+[DEBUG][2017-01-12 09:46:32,053][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[INFO][2017-01-12 09:46:33,954][javapns.notification.PushNotificationManager]Attempt failed (Connection reset)... trying again
+[DEBUG][2017-01-12 09:46:33,954][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.push.apple.com:2195
+[DEBUG][2017-01-12 09:46:34,156][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"test push message to ios device"}}
+[DEBUG][2017-01-12 09:46:34,156][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[INFO][2017-01-12 09:46:34,564][javapns.notification.PushNotificationManager]Attempt failed (Received fatal alert: internal_error)... trying again
+[DEBUG][2017-01-12 09:46:34,564][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.push.apple.com:2195
+[DEBUG][2017-01-12 09:46:34,764][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"test push message to ios device"}}
+[DEBUG][2017-01-12 09:46:34,764][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[ERROR][2017-01-12 09:46:36,432][javapns.notification.PushNotificationManager]Attempt to send Notification failed and beyond the maximum number of attempts permitted
+[ERROR][2017-01-12 09:46:36,438][javapns.notification.PushNotificationManager]Delivery error
+javax.net.ssl.SSLException: Received fatal alert: internal_error
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:208)
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:154)
+	at sun.security.ssl.SSLSocketImpl.recvAlert(SSLSocketImpl.java:2023)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1125)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1375)
+	at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:747)
+	at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:123)
+	at java.io.OutputStream.write(OutputStream.java:75)
+	at javapns.notification.PushNotificationManager.sendNotification(PushNotificationManager.java:402)
+	at javapns.notification.PushNotificationManager.sendNotification(PushNotificationManager.java:350)
+	at javapns.notification.PushNotificationManager.sendNotification(PushNotificationManager.java:320)
+	at com.web.controller.PushMsg.main(PushMsg.java:52)
+[ERROR][2017-01-12 09:46:36,443][javapns.notification.PushNotificationManager]Delivery error: javax.net.ssl.SSLException: Received fatal alert: internal_error
+[ERROR][2017-01-12 09:46:36,444][javapns.notification.PushNotificationManager]Closing connection after error
+[DEBUG][2017-01-12 09:46:36,444][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-12 09:46:36,445][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-12 09:46:36,445][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-12 09:46:36,446][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-12 11:25:58,809][javapns.notification.Payload]Adding alert [test push message to ios device]
+[DEBUG][2017-01-12 11:25:58,812][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-12 11:26:39,556][javapns.notification.Payload]Adding alert [test push message to ios device]
+[DEBUG][2017-01-12 11:26:39,559][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-12 11:26:40,236][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-12 11:26:40,285][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.push.apple.com:2195
+[DEBUG][2017-01-12 11:26:40,638][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.push.apple.com] Port: [2195]: 5cb9f472[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.push.apple.com/17.188.146.166,port=2195,localport=56928]]
+[DEBUG][2017-01-12 11:26:40,640][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-12 11:26:40,641][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 106
+[DEBUG][2017-01-12 11:26:40,642][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"test push message to ios device"}}
+[DEBUG][2017-01-12 11:26:40,642][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[DEBUG][2017-01-12 11:26:41,346][javapns.notification.PushNotificationManager]Flushing
+[DEBUG][2017-01-12 11:26:41,346][javapns.notification.PushNotificationManager]At this point, the entire 106-bytes message has been streamed out successfully through the SSL connection
+[DEBUG][2017-01-12 11:26:41,346][javapns.notification.PushNotificationManager]Notification sent on first attempt
+[DEBUG][2017-01-12 11:26:41,347][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-12 11:26:41,349][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-12 11:26:59,401][javapns.notification.Payload]Adding alert [给你发信息了]
+[DEBUG][2017-01-12 11:26:59,403][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-12 11:26:59,404][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-12 11:26:59,404][javapns.notification.Payload]Adding alert [给你发信息了] replacing previous alert [给你发信息了]
+[DEBUG][2017-01-12 11:26:59,404][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-12 11:26:59,410][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-12 11:26:59,938][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-12 11:26:59,964][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-12 11:27:01,343][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.sandbox.push.apple.com] Port: [2195]: 25bbe1b6[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.sandbox.push.apple.com/17.188.165.213,port=2195,localport=56933]]
+[DEBUG][2017-01-12 11:27:01,346][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-12 11:27:01,346][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 111
+[DEBUG][2017-01-12 11:27:01,347][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-12 11:27:01,347][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[DEBUG][2017-01-12 11:27:02,455][javapns.notification.PushNotificationManager]Flushing
+[DEBUG][2017-01-12 11:27:02,456][javapns.notification.PushNotificationManager]At this point, the entire 111-bytes message has been streamed out successfully through the SSL connection
+[DEBUG][2017-01-12 11:27:02,456][javapns.notification.PushNotificationManager]Notification sent on first attempt
+[DEBUG][2017-01-12 11:27:02,456][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-12 11:27:07,458][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-12 11:27:25,487][javapns.notification.Payload]Adding alert [给你发信息了]
+[DEBUG][2017-01-12 11:27:25,488][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-12 11:27:25,488][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-12 11:27:25,488][javapns.notification.Payload]Adding alert [给你发信息了] replacing previous alert [给你发信息了]
+[DEBUG][2017-01-12 11:27:25,489][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-12 11:27:25,493][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-12 11:27:26,008][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-12 11:27:26,045][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-12 11:27:26,519][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.sandbox.push.apple.com] Port: [2195]: 5702b3b1[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.sandbox.push.apple.com/17.188.165.216,port=2195,localport=56941]]
+[DEBUG][2017-01-12 11:27:26,522][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-12 11:27:26,523][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 111
+[DEBUG][2017-01-12 11:27:26,524][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-12 11:27:26,524][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[DEBUG][2017-01-12 11:27:27,337][javapns.notification.PushNotificationManager]Flushing
+[DEBUG][2017-01-12 11:27:27,337][javapns.notification.PushNotificationManager]At this point, the entire 111-bytes message has been streamed out successfully through the SSL connection
+[DEBUG][2017-01-12 11:27:27,337][javapns.notification.PushNotificationManager]Notification sent on first attempt
+[DEBUG][2017-01-12 11:27:27,337][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-12 11:27:32,343][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-12 11:27:41,040][javapns.notification.Payload]Adding alert [给你发信息了]
+[DEBUG][2017-01-12 11:27:41,043][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-12 11:27:41,044][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-12 11:27:41,044][javapns.notification.Payload]Adding alert [给你发信息了] replacing previous alert [给你发信息了]
+[DEBUG][2017-01-12 11:27:41,044][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-12 11:27:41,052][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-12 11:27:41,740][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-12 11:27:41,760][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-12 11:27:42,186][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.sandbox.push.apple.com] Port: [2195]: 25bbe1b6[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.sandbox.push.apple.com/17.188.165.215,port=2195,localport=56950]]
+[DEBUG][2017-01-12 11:27:42,189][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-12 11:27:42,190][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 111
+[DEBUG][2017-01-12 11:27:42,191][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-12 11:27:42,191][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[DEBUG][2017-01-12 11:27:43,106][javapns.notification.PushNotificationManager]Flushing
+[DEBUG][2017-01-12 11:27:43,107][javapns.notification.PushNotificationManager]At this point, the entire 111-bytes message has been streamed out successfully through the SSL connection
+[DEBUG][2017-01-12 11:27:43,107][javapns.notification.PushNotificationManager]Notification sent on first attempt
+[DEBUG][2017-01-12 11:27:43,107][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-12 11:27:48,108][javapns.notification.PushNotificationManager]Closing connection
+[DEBUG][2017-01-15 10:29:07,085][javapns.notification.Payload]Adding alert [给你发信息了]
+[DEBUG][2017-01-15 10:29:07,088][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-15 10:29:07,090][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-15 10:29:07,090][javapns.notification.Payload]Adding alert [给你发信息了] replacing previous alert [给你发信息了]
+[DEBUG][2017-01-15 10:29:07,091][javapns.notification.Payload]Adding badge [1]
+[DEBUG][2017-01-15 10:29:07,100][javapns.notification.Payload]Adding sound [default]
+[DEBUG][2017-01-15 10:29:07,619][javapns.communication.ConnectionToAppleServer]Creating SSLSocketFactory
+[DEBUG][2017-01-15 10:29:07,653][javapns.communication.ConnectionToAppleServer]Creating SSLSocket to gateway.sandbox.push.apple.com:2195
+[DEBUG][2017-01-15 10:29:08,088][javapns.notification.PushNotificationManager]Initialized Connection to Host: [gateway.sandbox.push.apple.com] Port: [2195]: 25bbe1b6[SSL_NULL_WITH_NULL_NULL: Socket[addr=gateway.sandbox.push.apple.com/17.188.166.22,port=2195,localport=56121]]
+[DEBUG][2017-01-15 10:29:08,092][javapns.notification.PushNotificationManager]Building Raw message from deviceToken and payload
+[DEBUG][2017-01-15 10:29:08,093][javapns.notification.PushNotificationManager]Built raw message ID 1 of total length 111
+[DEBUG][2017-01-15 10:29:08,094][javapns.notification.PushNotificationManager]Attempting to send notification: {"aps":{"badge":1,"alert":"给你发信息了","sound":"default"}}
+[DEBUG][2017-01-15 10:29:08,094][javapns.notification.PushNotificationManager]  to device: baef1ca72caa7e2fc850c4b01668ea95462650280557c60319ac8f4cb2a68f12
+[DEBUG][2017-01-15 10:29:08,820][javapns.notification.PushNotificationManager]Flushing
+[DEBUG][2017-01-15 10:29:08,820][javapns.notification.PushNotificationManager]At this point, the entire 111-bytes message has been streamed out successfully through the SSL connection
+[DEBUG][2017-01-15 10:29:08,820][javapns.notification.PushNotificationManager]Notification sent on first attempt
+[DEBUG][2017-01-15 10:29:08,820][javapns.notification.PushNotificationManager]Reading responses
+[DEBUG][2017-01-15 10:29:13,827][javapns.notification.PushNotificationManager]Closing connection

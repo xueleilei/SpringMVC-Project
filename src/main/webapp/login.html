@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SpringMVC 项目管理系统</title>
+    <link href="https://s2.ufubank.com/framecore/font/iconfont.css" rel="stylesheet">
+    <link href="https://s2.ufubank.com/framecore/sweet-alert/css/sweet-alert.css" rel="stylesheet">
+    <link href="https://managerstatic.ufubank.com/manager/static/style/bootstrap.css?ver=3.21" rel="stylesheet">
+    <link href="https://managerstatic.ufubank.com/manager/static/style/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="https://managerstatic.ufubank.com/manager/static/style/login.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<img class="background" src="https://managerstatic.ufubank.com/manager/static/images/wall_page/3.jpg">
+<div class="loginbox">
+    <div class="title">
+        <div class="logo"><i class="iconfont" style="font-size:36px;">&#xe602;</i>SPRING</div>
+        <div class="info">—SpringMVC 项目管理系统</div>
+    </div>
+    <div class="form">
+        <form name="form" method="post">
+            <div class="inputs">
+                <div><span>用户名：</span><input type="text" name="name" placeholder="用户名" id="name"></div>
+                <div><span>密码：</span><input type="password" name="password" placeholder="密码" id="password"></div>
+            </div>
+            <div class="actions">
+                <input id="submit" value="登录" type="button">
+            </div>
+            <div class="msg"></div>
+            <div style="clear:both;"></div>
+            <div class="guest"></div>
+        </form>
+    </div>
+</div>
+<div class="common_footer">Powered by SpringMVC | Copyright © <a href="#" target="_blank">Spring.io</a> All rights reserved.</div>
+<script src="https://s2.ufubank.com/framecore/jquery-2.1.1.min.js"></script>
+<script src="https://s2.ufubank.com/framecore/jquery.form.js"></script>
+<!--SweetAlert-->
+<script src="https://s2.ufubank.com/framecore/sweet-alert/js/sweet-alert.js"></script>
+<script src="https://s2.ufubank.com/framecore/layer/layer.js"></script>
+<script>
+    $(function(){
+
+
+        //Enter登录事件绑定
+        $(document).keydown(function(e){
+            if(e.keyCode == 13) {
+                var isUser=$("#name").val();
+                var isPass=$("#password").val();
+                if(isUser!="" && isPass!=""){
+                    $("#submit").click();
+                    return false;
+                }
+            }
+        });
+
+
+        $("#submit").on('click',function(){
+            //验证
+            if($("#name").val() == '') {
+                $('.J_errorTips').show();
+                $('.J_errorTips').html("请输入用户名！");
+                $("#name").focus();
+                return false;
+            }
+            if($("#password").val() == ''){
+                $('.J_errorTips').show();
+                $('.J_errorTips').html("请输入密码!");
+                $("#password").focus();
+                return false;
+            }
+
+            var qsData = {name:$("#name").val(), password:$("#password").val()};
+            $.ajax({
+               type: "GET",
+               async: false,
+               url: "user/login.do",
+               data: qsData,
+               timeout: 5000,
+               dataType: "jsonp",
+               jsonp: "callback",
+               beforeSend: function () {
+					//禁用登陆按钮
+					$("#submit").attr('disabled',"true");
+					$("#submit").html("登录中...");
+               },
+               success: function(json){
+                   if(json.Code=='0000'){
+                	   layer.msg('登陆成功，正在跳转...');
+                       location.href = 'userController/listUser.do';
+                   }else{
+                       $('.msg').show();
+                       $('.msg').html('用户名或密码错误！');
+                       console.log(json.errMsg);
+                       return false;
+                   }
+               },
+               complete:function(){
+            	   //启用登陆按钮
+                   $("#submit").removeAttr("disabled");
+                   $("#submit").html("立即登录");
+               },
+               error: function(XMLHttpRequest, textStatus, errorThrown){
+                   $('.msg').show();
+                   $('.msg').html("登录出现错误，系统可能出现异常情况！");
+                   console.log("登录出现错误，系统可能出现异常情况！");
+                   //启用登陆按钮
+                   $("#submit").removeAttr("disabled");
+                   $("#submit").html("立即登录");
+               }
+            });
+        });
+
+
+    });
+</script>
+</body>
+</html>
