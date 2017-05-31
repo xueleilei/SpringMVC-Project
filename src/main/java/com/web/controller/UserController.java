@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.web.model.User;
 import com.web.service.UserServiceI;
 import com.web.utils.getMD5;
@@ -132,6 +134,36 @@ public class UserController {
 		return "listUser";
 	}
 
+	
+	//显示所有用户
+	@RequestMapping("/getlistUser")
+	@ResponseBody
+	public void listUser(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException  {
+		List<User> list = userService.getAll();
+		System.out.println(list); 
+
+		response.setContentType("text/html;charset=UTF-8;pageEncoding=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		try {
+			String json = JSONObject.toJSONString(list);
+			System.out.println(json);
+            //out.write(json); 
+            out.write("{\"Code\":\"0000\",\"data\":"+json+"}");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            out.flush();
+            out.close();
+        }
+		
+
+	}
+	
+	
+	
 
 
 	// 添加一个用户
@@ -150,17 +182,17 @@ public class UserController {
 			User user2 = userService.getUserByName(request.getParameter("name"));
 			
 			if (user2.getName() != null) {
-				out.write(callback + "({\"Code\":1001,\"msg\":\"用户已经存在，添加失败！\"})");
+				out.write(callback + "{\"Code\":\"1001\",\"msg\":\"用户已经存在，添加失败！\"}");
 			}
 		} catch (Exception e) {
 			try {
 				userService.insertUser(user);
 				//model.addAttribute("user", "您添加的用户是：" + name + "，密码是：" + password);
 				System.out.println("----Console 本次添加的用户ID是："+user.getId()+"，用户名是："+user.getName()+"，状态：成功");
-				out.write(callback + "({\"Code\":0000,\"msg\":\"添加成功！\",\"id\":\""+user.getId()+"\",\"name\":\""+user.getName()+"\",\"password\":\""+user.getPassword()+"\",\"ipAddr\":\""+getIpAddr+"\"})");
+				out.write("{\"Code\":\"0000\",\"msg\":\"添加成功！\",\"id\":\""+user.getId()+"\",\"name\":\""+user.getName()+"\",\"password\":\""+user.getPassword()+"\",\"ipAddr\":\""+getIpAddr+"\"}");
 			} catch (Exception e2) {
 				//model.addAttribute("user", "添加失败");
-				out.write(callback + "({\"Code\":-1,\"msg\":\"系统错误，添加失败！\"})");
+				out.write("{\"Code\":\"-1\",\"msg\":\"系统错误，添加失败！\"}");
 			}
 			
 		}
@@ -202,18 +234,35 @@ public class UserController {
 	@ResponseBody
 	public void deleteUser(HttpServletResponse response,HttpServletRequest request,User user) throws IOException {
 		//String id = request.getParameter("id");
-		//获取跨域JSONP callback参数，并返回页面
-		String callback = request.getParameter("callback");
-		callback = callback == null ? "" : callback;
+
+		response.setContentType("text/html;charset=UTF-8;pageEncoding=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+		
 		PrintWriter out = response.getWriter();
+		
+		
 		try {
-			userService.deleteUser(user);
-			System.out.println("----Console 删除成功，删除的用户ID是："+user.getId()+",用户名是："+user.getName());
-			out.write(callback + "({\"Code\":\"0000\"})");
-		} catch (Exception e) {
-			System.out.println("删除失败");
-			out.write(callback + "({\"Code\":\"-1\"})");
-		}
+			int n = userService.deleteUser(user);
+			if (n != 0) {
+				System.out.println("----Console 删除成功，删除的用户ID是："+user.getId()+",用户名是："+user.getName());
+	            //out.write(json); 
+	            out.write("{\"Code\":\"0000\"}");
+			}else{
+				System.out.println("删除失败");
+	        	out.write("{\"Code\":\"-1\"}");
+			}
+	
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+        } finally {
+            out.flush();
+            out.close();
+        }
+		
+		
+		
+		
 
 	}
 	

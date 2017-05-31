@@ -1,111 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>用户登陆</title>
-	<script src="http://ss.ufubank.com/framecore/jquery-2.1.1.min.js"></script>
-	<script src="https://s2.ufubank.com/framecore/layer/layer.js"></script>
-	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	
+    <meta charset="UTF-8">
+    <title>跳转中...</title>
 </head>
 <body>
-
-<div style='width:500px;margin:50px auto;'>
-	<form name="form" method="post">
-	<input type="hidden" class="form-control" name="id" id="id">
-	<div class="form-group">
-        <div class="row"><div class="col-sm-12 J_errorTips fz16" style="display:none;color:red;"></div></div>
-    </div>
-    <div class="form-group">
-        <label for="name">用户名:</label>
-        <input type="text" class="form-control" name="name" id="name">
-    </div>
-    <div class="form-group">
-        <label for="password">密码: </label>
-        <input type="text" class="form-control" name="password" id="password">
-    </div>
-    <button type="button" id="submit" class="btn btn-primary btn-block">登录</button>
-</form> 
-</div>
-
-
-
 <script>
-    $(function(){
-
-
-        //Enter登录事件绑定
-        $(document).keydown(function(e){
-            if(e.keyCode == 13) {
-                var isUser=$("#name").val();
-                var isPass=$("#password").val();
-                if(isUser!="" && isPass!=""){
-                    $("#submit").click();
-                    return false;
-                }
-            }
-        });
-
-
-        $("#submit").on('click',function(){
-            //验证
-            if($("#name").val() == '') {
-                $('.J_errorTips').show();
-                $('.J_errorTips').html("请输入用户名！");
-                $("#name").focus();
-                return false;
-            }
-            if($("#password").val() == ''){
-                $('.J_errorTips').show();
-                $('.J_errorTips').html("请输入密码!");
-                $("#password").focus();
-                return false;
-            }
-
-            var qsData = {name:$("#name").val(), password:$("#password").val()};
-            $.ajax({
-               type: "GET",
-               async: false,
-               url: "user/login.do",
-               data: qsData,
-               timeout: 5000,
-               dataType: "jsonp",
-               jsonp: "callback",
-               beforeSend: function () {
-					//禁用登陆按钮
-					$("#submit").attr('disabled',"true");
-					$("#submit").html("登录中...");
-               },
-               success: function(json){
-                   if(json.Code=='0000'){
-                	   layer.msg('登陆成功，正在跳转...');
-                       location.href = 'userController/listUser.do';
-                   }else{
-                       $('.J_errorTips').show();
-                       $('.J_errorTips').html('用户名或密码错误！');
-                       console.log(json.errMsg);
-                       return false;
-                   }
-               },
-               complete:function(){
-            	   //启用登陆按钮
-                   $("#submit").removeAttr("disabled");
-                   $("#submit").html("立即登录");
-               },
-               error: function(XMLHttpRequest, textStatus, errorThrown){
-                   $('.J_errorTips').show();
-                   $('.J_errorTips').html("登录出现错误，系统可能出现异常情况！");
-                   console.log("登录出现错误，系统可能出现异常情况！");
-                   //启用登陆按钮
-                   $("#submit").removeAttr("disabled");
-                   $("#submit").html("立即登录");
-               }
-            });
-        });
-
-
-    });
+    location.href = 'login.html';
 </script>
 </body>
 </html>

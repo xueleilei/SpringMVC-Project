@@ -83,6 +83,7 @@ public class UserServiceImpl implements UserServiceI {
 	
 	//删除一个用户 [实现方法]
 	public int deleteUser(User user) {
+		System.out.println("删除用户：id="+user.getId());
 		return userMapper.deleteByPrimaryKey(user);
 	}
 	

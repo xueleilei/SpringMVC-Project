@@ -1,7 +1,7 @@
 
 #set($page_title="用户列表")
 
-<div style='margin:50px auto;'>
+<div id="app" style='margin:50px auto;'>
 
 	<h4 id="search_row"></h4><br>
 	<div class="row">
@@ -11,47 +11,101 @@
 		</div>
 	</div><br>
 	<div class="row">
-		<div class="col-xs-4"><input type="text" class="form-control" id='name' placeholder="请输入用户名"></div>
-		<div class="col-xs-4"><input type="text" class="form-control" id='password' placeholder="请输入用户密码"></div>
 		<div class="col-xs-4">
-			<button id="adduser" type="button" class="btn btn-success">添加</button>
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addUserModal">添加</button>
 		</div>
 	</div><br>
 
 
 
-	<table class="table table-striped" style='border:1px solid #ddd;'>
-		<caption>用户列表</caption>
-		<thead>
-		<tr>
-			<th>ID</th>
-			<th>NAME</th>
-			<th>PASSWORD</th>
-			<th>IP</th>
-			<th>CONTROL</th>
-		</tr>
-		</thead>
-		<tbody class='list'>
-		#foreach($user in $list)
-		<tr id="J_$user.id">
-			<td width='60'>$user.id</td>
-			<td>$user.name</td>
-			<td>$user.password</td>
-			<td><span class="J_ip">$user.ipAddr</span><small class="J_getIpAddr" style="cursor:pointer;">查地址</small></td>
-			<td>
-				<button id="$user.id" type="button" class="btn btn-primary btn-xs J_edit">编辑</button>&nbsp;
-				<button id="$user.id" type="button" class="btn btn-danger btn-xs J_delete">删除</button>
-			</td>
-		</tr>
-		#end
-		</tbody>
-	</table>
+	<table class="table table-bordered table-hover table-striped">
+        <caption class="text-left"><h4>用户信息</h4></caption>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(item,index) in peps">
+            <td id="rowIndex-{{index}}">{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.password}}</td>
+            <td>{{item.ipAddr}}</td>
+            <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" @click="setDeleteInfo(index,item.id,item.name)">删除</button></td>
+        </tr>
+        <tr v-show="peps.length!=0">
+            <td colspan="5" class="text-right"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" @click="setDeleteInfo('all',item.id,'全部信息')">删除全部</button></td>
+        </tr>
+        <tr v-show="peps.length==0">
+            <td colspan="5" class="text-center">暂无信息</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" data-index="{{nowIndex}}" data-id="{{nowUserID}}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">确认要删除 {{nowUsername}} 吗?</h4>
+                </div>
+                <div class="modal-body">删除后将无法恢复,请您谨慎操作!</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" @click="deleteMsg(nowIndex,nowUserID)">删除</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    
+    
+    
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" data-index="{{nowIndex}}" data-id="{{nowUserID}}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">添加新用户</h4>
+                </div>
+                <div class="modal-body">
+					<form class="form-horizontal" role="form">
+					  <div class="form-group">
+					    <label for="username" class="col-sm-2 control-label">用户名</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" id='username' v-model="username" placeholder="请输入用户名">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="password" class="col-sm-2 control-label">密 码</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" id='password' v-model="password" placeholder="请输入用户密码">
+					    </div>
+					  </div>
+					</form>
+				</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" @click="addUser()">添加</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
 
 
 </div>
 
 
-
+<script src="${webSiteDomain}/js/getUserList.js"></script>
 <script type="text/javascript">
 
 
@@ -92,89 +146,9 @@
 
 		});
 
-		//添加一个新用户
-		$("button#adduser").on('click',function() {
-			var _thisname = $("#name").val();
-			var _thispassword = $("#password").val();
+	
 
-			$.ajax({
-				type : "POST",
-				url : "${webSiteDomain}/userController/insertUser.do",
-				data : {name : _thisname,password : _thispassword},
-				timeout: 5000,
-				dataType: "jsonp",//"xml", "html", "script", "json", "jsonp", "text".
-				jsonp: "callback",
-				beforeSend: function () {
-					$('#search_row').html("正在保存…");
-				},
-				success : function(json) {
-					console.log(json);
-					
-					if(json.Code=='0000'){
-						layer.msg('添加成功！');
-						$('#search_row').html("");
-						var html = "<tr id='J_"+json.id+"'>" +
-								"<td width='60'>"+json.id+"</td>" +
-								"<td>"+json.name+"</td>" +
-								"<td>"+json.password+"</td>" +
-								"<td><span class='J_ip'>"+json.ipAddr+"</span> <small class='J_getIpAddr' style='cursor:pointer;'>查地址</small></td>" +
-								"<td>" +
-								"<button id="+json.id+" type='button' class='btn btn-primary btn-xs J_edit'>编辑</button>&nbsp;" +
-								"<button id="+json.id+" type='button' class='btn btn-danger btn-xs J_delete'>删除</button>" +
-								"</td>" +
-								"</tr>";
-						//$(".list").prependTo(html);
-						$(html).prependTo(".list");
-						$("#name").val("");
-						$("#password").val("");
-					}else if(json.Code=='1001'){
-						$('#search_row').html("<font color='red'>该用户已经存在，请换一个用户名。</font>");
-					}else if(json.Code=='-1'){
-						layer.msg('出现错误，系统可能出现异常情况！');
-					}
-				},
-				error: function(XMLHttpRequest, textStatus, errorThrown){
-					layer.msg('出现错误，系统可能出现异常情况！');
-					console.log("出现错误，系统可能出现异常情况！");
 
-				}
-			});
-		});
-
-		//删除一个用户
-		$("body").on('click','.J_delete',function() {
-			var _thisid = $(this).attr('id');
-			layer.confirm('您确定要删除吗？确认后将不可恢复', {btn: ['删除','取消']}, function(){
-				//-------------
-				$.ajax({
-					type : "GET",
-					url : "${webSiteDomain}/userController/deleteUser.do",
-					data : {id : _thisid},
-					timeout: 5000,
-					dataType: "jsonp",//"xml", "html", "script", "json", "jsonp", "text".
-					jsonp: "callback",
-					beforeSend: function () {
-						layer.msg('正在处理…');
-					},
-					success : function(json) {
-						console.log(json);
-						if(json.Code=="0000"){
-							layer.msg('删除成功');
-							$('#J_'+_thisid).remove();
-						}else if(json.Code=="-1"){
-							layer.msg('删除失败');
-						}else{
-							layer.msg('服务器出现错误');
-						}
-					},
-					error: function(XMLHttpRequest, textStatus, errorThrown){
-						layer.msg('出现错误，系统可能出现异常情况！');
-						console.log("出现错误，系统可能出现异常情况！");
-					}
-				});
-				//------------------
-			});
-		});
 
 		//编辑用户,获取用户数据
 		$("body").on('click','.J_edit',function() {
