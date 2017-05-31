@@ -7,14 +7,11 @@
 	<div class="row">
 		<div class="col-xs-8"><input type="text" class="form-control" id='select' placeholder="请输入用户名称"></div>
 		<div class="col-xs-4">
-			<button type="button" class="btn btn-primary" id="J_select">查询</button>&nbsp;
+			<button type="button" class="btn btn-blue" id="J_select">查询</button>&nbsp;
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addUserModal">添加新用户</button>
 		</div>
-	</div><br>
-	<div class="row">
-		<div class="col-xs-4">
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addUserModal">添加</button>
-		</div>
-	</div><br>
+	</div>
+	<br><br>
 
 
 
@@ -25,16 +22,20 @@
             <th>ID</th>
             <th>用户名</th>
             <th>密码</th>
+            <th>IP</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <tr v-for="(item,index) in peps">
+        <tr v-bind:id="item.id" v-for="(item,index) in peps">
             <td id="rowIndex-{{index}}">{{item.id}}</td>
             <td>{{item.name}}</td>
             <td>{{item.password}}</td>
             <td>{{item.ipAddr}}</td>
-            <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" @click="setDeleteInfo(index,item.id,item.name)">删除</button></td>
+            <td>
+            	<button type="button" class="btn btn-blue btn-xs J_edit" v-bind:id="item.id">编辑</button>
+            	<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal" @click="setDeleteInfo(index,item.id,item.name)">删除</button>
+            </td>
         </tr>
         <tr v-show="peps.length!=0">
             <td colspan="5" class="text-right"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" @click="setDeleteInfo('all',item.id,'全部信息')">删除全部</button></td>
@@ -59,7 +60,7 @@
                 <div class="modal-body">删除后将无法恢复,请您谨慎操作!</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" @click="deleteMsg(nowIndex,nowUserID)">删除</button>
+                    <button type="button" class="btn btn-blue" data-dismiss="modal" @click="deleteMsg(nowIndex,nowUserID)">删除</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
@@ -127,15 +128,31 @@
 					$('#search_row').html("正在查询…");
 				},
 				success : function(json) {
-
 					if(json.Code=='0000'){
 						layer.closeAll();
-						$('#search_row').html("你查找的用户是："+json.Name+"，加密后的密文是："+json.Password);
+						swal({
+							  title: "您查找的用户是："+json.Name+"<br>加密后的密文是："+json.Password,
+							  text: "",
+							  type: "success",
+							  html:true,
+							  showCancelButton: false,
+							  closeOnConfirm: true
+						});
+					
 						//console.log(json.list);
 					}else if(json.Code=='-1'){
-						$('#search_row').html("你查找的用户不存在！");
+						swal({
+							  title: "你查找的用户不存在！",
+							  text: "",
+							  type: "warning",
+							  html:true,
+							  showCancelButton: false,
+							  closeOnConfirm: true
+						});
+						
 						return false;
 					}
+					$('#search_row').html("");
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown){
 					layer.msg('出现错误，系统可能出现异常情况！');
@@ -154,7 +171,7 @@
 		$("body").on('click','.J_edit',function() {
 			var _thisid = $(this).attr('id');
 			//location.href='${webSiteDomain}/userController/getUserName.do?id='+_thisid;
-
+			
 			var qsData = {id:_thisid};
 			$.ajax({
 				type: "GET",
