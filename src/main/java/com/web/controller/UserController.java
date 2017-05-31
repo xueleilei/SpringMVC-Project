@@ -34,37 +34,37 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	//测试显示
-	@RequestMapping(value="/index")
-	public String index(HttpServletRequest request,Model model) {
-		//String user = "我是用来测试显示的";
-		//String user = "ccccc";
+//	//测试显示
+//	@RequestMapping(value="/index")
+//	public String index(HttpServletRequest request,Model model) {
+//		//String user = "我是用来测试显示的";
+//		//String user = "ccccc";
+//		
+//		String username = request.getParameter("s");
+//		String result = getMD5.MD5(username);
+//		String ipAddr = ipUtils.getIpAddr(request);
+//		
+//		model.addAttribute("user", result);
+//		model.addAttribute("ipAddr", ipAddr);
+//		
+//		
+//		
+//		return "showUser";
+//	}
 		
-		String username = request.getParameter("s");
-		String result = getMD5.MD5(username);
-		String ipAddr = ipUtils.getIpAddr(request);
 		
-		model.addAttribute("user", result);
-		model.addAttribute("ipAddr", ipAddr);
-		
-		
-		
-		return "showUser";
-	}
-		
-		
-	// 直接通过URL访问用户
-	@RequestMapping("/{id}/showUser")
-	public String showUser(@PathVariable String id, HttpServletRequest request) {
-		User u = userService.getUserById(id);
-		try {
-			// System.out.println(u.getName());
-			request.setAttribute("user", u.getName());
-		} catch (Exception e) {
-			request.setAttribute("user", "未能找到该用户");
-		}
-		return "showUser";
-	}
+//	// 直接通过URL访问用户
+//	@RequestMapping("/{id}/showUser")
+//	public String showUser(@PathVariable String id, HttpServletRequest request) {
+//		User u = userService.getUserById(id);
+//		try {
+//			// System.out.println(u.getName());
+//			request.setAttribute("user", u.getName());
+//		} catch (Exception e) {
+//			request.setAttribute("user", "未能找到该用户");
+//		}
+//		return "showUser";
+//	}
 	
 
 	
@@ -120,7 +120,7 @@ public class UserController {
 	}
 	
 	
-	//显示所有用户
+	//用户列表页面
 	@RequestMapping("/listUser")
 	public String listUser(Model model) {
 		List<User> list = userService.getAll();
@@ -133,9 +133,7 @@ public class UserController {
 		}
 		return "listUser";
 	}
-
-	
-	//显示所有用户
+	//获取所有用户API
 	@RequestMapping("/getlistUser")
 	@ResponseBody
 	public void listUser(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException  {
