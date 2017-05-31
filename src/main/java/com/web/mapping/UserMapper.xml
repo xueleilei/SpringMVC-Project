@@ -56,9 +56,9 @@
 
 	<!-- 插入数据 -->
 	<insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
-		insert into user_Info(name,password)
+		insert into user_Info(name,password,ipAddr)
 		values
-		(#{name},#{password})
+		(#{name},#{password},#{ipAddr})
 	</insert>
 	
 	<!-- 对应userDao中的updateUser方法 -->

@@ -171,7 +171,7 @@ public class UserController {
 	@ResponseBody
 	public void insertUser(HttpServletRequest request,HttpServletResponse response, Model model, User user) throws IOException {
 		String getIpAddr = ipUtils.getIpAddr(request);
-		user.setIpAddr(getIpAddr);;  //获取IP地址并放入user对象里
+        user.setIpAddr(getIpAddr);  //获取IP地址并放入user对象里
 		
 		//获取跨域JSONP callback参数，并返回页面
 		String callback = request.getParameter("callback");
