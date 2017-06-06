@@ -58,17 +58,20 @@
         $("#submit").on('click',function(){
             //验证
             if($("#name").val() == '') {
-                $('.J_errorTips').show();
-                $('.J_errorTips').html("请输入用户名！");
+                $('.msg').show();
+                $('.msg').html("请输入用户名！");
                 $("#name").focus();
                 return false;
             }
             if($("#password").val() == ''){
-                $('.J_errorTips').show();
-                $('.J_errorTips').html("请输入密码!");
+                $('.msg').show();
+                $('.msg').html("请输入密码!");
                 $("#password").focus();
                 return false;
             }
+            
+            $("#submit").attr('disabled',"true");
+            $("#submit").html("登录中...");
 
             var qsData = {name:$("#name").val(), password:$("#password").val()};
             $.ajax({
@@ -81,12 +84,12 @@
                jsonp: "callback",
                beforeSend: function () {
 					//禁用登陆按钮
-					$("#submit").attr('disabled',"true");
-					$("#submit").html("登录中...");
+            	   $("#submit").attr('disabled',"true");
+                   $("#submit").html("登录中...");
                },
                success: function(json){
                    if(json.Code=='0000'){
-                	   layer.msg('登陆成功，正在跳转...');
+                	   $("#submit").html("登陆成功");
                        location.href = 'userController/listUser.do';
                    }else{
                        $('.msg').show();
@@ -94,11 +97,14 @@
                        console.log(json.errMsg);
                        return false;
                    }
+                 	//启用登陆按钮
+                   $("#submit").removeAttr("disabled");
+                   $("#submit").html("立即登录");
                },
                complete:function(){
             	   //启用登陆按钮
-                   $("#submit").removeAttr("disabled");
-                   $("#submit").html("立即登录");
+                   //$("#submit").removeAttr("disabled");
+                   //$("#submit").html("立即登录");
                },
                error: function(XMLHttpRequest, textStatus, errorThrown){
                    $('.msg').show();
